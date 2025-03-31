@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+        content="BiasBench: A reproducible benchmark for tuning the biases of event cameras.">
   <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nerfies: Deformable Neural Radiance Fields</title>
@@ -52,17 +52,18 @@
           <h1 class="title is-1 publication-title">BiasBench: A reproducible benchmark for tuning the biases of event cameras</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://andreasaziegler.github.io/">Andreas Ziegler</a>,</span>
+              <a href="https://andreasaziegler.github.io/">Andreas Ziegler*</a>,</span>
             <span class="author-block">
-              <a href="https://utkarshsinha.com">David Josesph</a>,</span>
+              David Josesph*,
+            </span>
             <span class="author-block">
-              <a href="https://jonbarron.info">Thomas Gossard</a>,
+              <a href="https://uni-tuebingen.de/de/226101">Thomas Gossard*</a>,
             </span>
             <span class="author-block">
               Emil Moldovan,
             </span>
             <span class="author-block">
-              Andreas Zell,
+              Andreas Zell
             </span>
           </div>
 
@@ -74,7 +75,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
+                <a href="https://arxiv.org/pdf/"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -83,7 +84,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
+                <a href="https://arxiv.org/abs/"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -93,7 +94,7 @@
               </span>
               <!-- Video Link. -->
               <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                <a href="https://www.youtube.com/watch?v=2QD-op0nv4o"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
@@ -103,7 +104,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies"
+                <a href="https://github.com/cogsys-tuebingen/biasbench"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -113,7 +114,7 @@
               </span>
               <!-- Dataset Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                <a href="https://github.com/cogsys-tuebingen/biasbench"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
@@ -129,79 +130,79 @@
   </div>
 </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
-      </h2>
-    </div>
-  </div>
-</section>
+<!-- <section class="hero teaser"> -->
+<!--   <div class="container is-max-desktop"> -->
+<!--     <div class="hero-body"> -->
+<!--       <video id="teaser" autoplay muted loop playsinline height="100%"> -->
+<!--         <source src="./static/videos/teaser.mp4" -->
+<!--                 type="video/mp4"> -->
+<!--       </video> -->
+<!--       <h2 class="subtitle has-text-centered"> -->
+<!--         <span class="dnerf">Nerfies</span> turns selfie videos from your phone into -->
+<!--         free-viewpoint -->
+<!--         portraits. -->
+<!--       </h2> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </section> -->
 
 
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- <section class="hero is-light is-small"> -->
+<!--   <div class="hero-body"> -->
+<!--     <div class="container"> -->
+<!--       <div id="results-carousel" class="carousel results-carousel"> -->
+<!--         <div class="item item-steve"> -->
+<!--           <video poster="" id="steve" autoplay controls muted loop playsinline height="100%"> -->
+<!--             <source src="./static/videos/steve.mp4" -->
+<!--                     type="video/mp4"> -->
+<!--           </video> -->
+<!--         </div> -->
+<!--         <div class="item item-chair-tp"> -->
+<!--           <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%"> -->
+<!--             <source src="./static/videos/chair-tp.mp4" -->
+<!--                     type="video/mp4"> -->
+<!--           </video> -->
+<!--         </div> -->
+<!--         <div class="item item-shiba"> -->
+<!--           <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%"> -->
+<!--             <source src="./static/videos/shiba.mp4" -->
+<!--                     type="video/mp4"> -->
+<!--           </video> -->
+<!--         </div> -->
+<!--         <div class="item item-fullbody"> -->
+<!--           <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%"> -->
+<!--             <source src="./static/videos/fullbody.mp4" -->
+<!--                     type="video/mp4"> -->
+<!--           </video> -->
+<!--         </div> -->
+<!--         <div class="item item-blueshirt"> -->
+<!--           <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%"> -->
+<!--             <source src="./static/videos/blueshirt.mp4" -->
+<!--                     type="video/mp4"> -->
+<!--           </video> -->
+<!--         </div> -->
+<!--         <div class="item item-mask"> -->
+<!--           <video poster="" id="mask" autoplay controls muted loop playsinline height="100%"> -->
+<!--             <source src="./static/videos/mask.mp4" -->
+<!--                     type="video/mp4"> -->
+<!--           </video> -->
+<!--         </div> -->
+<!--         <div class="item item-coffee"> -->
+<!--           <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%"> -->
+<!--             <source src="./static/videos/coffee.mp4" -->
+<!--                     type="video/mp4"> -->
+<!--           </video> -->
+<!--         </div> -->
+<!--         <div class="item item-toby"> -->
+<!--           <video poster="" id="toby" autoplay controls muted loop playsinline height="100%"> -->
+<!--             <source src="./static/videos/toby2.mp4" -->
+<!--                     type="video/mp4"> -->
+<!--           </video> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </section> -->
 
 
 <section class="section">
@@ -232,7 +233,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
         <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+          <iframe src="https://www.youtube.com/embed/2QD-op0nv4o?rel=0&amp;showinfo=0"
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
       </div>
@@ -241,18 +242,34 @@
   </div>
 </section>
 
-
-
-
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
+    <pre><code>@inproceedings{Gossard2024cvprw,
+  author    = {Ziegler,  Andreas and Joseph,  David and Gossard,  Thomas and Moldovan,  Emil and Zell,  Andreas},
+  title     = {BiasBench: A reproducible benchmark for tuning the biases of event cameras},
+  booktitle = {2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)},
+  publisher = {IEEE},
+  year      = {2025},
+  month     = jun,
 }</code></pre>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Acknowledgements. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Acknowledgements</h2>
+        <div class="content has-text-justified">
+          <p>
+            Special thanks to <a href="https://ai.sony/">Sony AI</a> for partially funding this project.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Acknowledgements. -->
   </div>
 </section>
 

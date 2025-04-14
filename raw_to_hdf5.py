@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import argparse
 import time
 import shutil
-
+import os
 
 def parse_arguments():
     """
@@ -38,7 +38,7 @@ def save_events_to_hdf5(event_reader, sensor, bias, output_file, chunk_size=10_0
         process (int): Optional process ID for logging.
     """
     width, height = event_reader.width, event_reader.height
-    print(f"{'Process ' + str(process) + ': ' if process != -1 else ''}Sensor width: {width}, height: {height}")
+    #print(f"{'Process ' + str(process) + ': ' if process != -1 else ''}Sensor width: {width}, height: {height}")
     
     t00 = time.time()
 
@@ -79,13 +79,13 @@ def save_events_to_hdf5(event_reader, sensor, bias, output_file, chunk_size=10_0
             total_events += num_events
             last_time_stamp = events["t"][-1] // 1_000
 
-            print(f"{'Process ' + str(process) + ': ' if process != -1 else ''}Data saved in {time.time() - t0:.2f} seconds")
+            #print(f"{'Process ' + str(process) + ': ' if process != -1 else ''}Data saved in {time.time() - t0:.2f} seconds")
 
         ms_to_idx = generate_ms_to_idx(dset_t[:])
         dset_ms = h5f.create_dataset("ms_to_idx", shape=(len(ms_to_idx),), maxshape=(None,), dtype="uint64")
         dset_ms[:] = ms_to_idx
 
-    print(f"Saved {total_events} events to {output_file} in {time.time() - t00:.2f} seconds")
+    #print(f"Saved {total_events} events to {output_file} in {time.time() - t00:.2f} seconds")
 
 
 def generate_ms_to_idx(timestamps, last_index=0, previous_time_stamps=0):
@@ -152,6 +152,9 @@ def convert_raw_to_hdf5(raw_file, hdf5_file, bias, sensor_type, process=-1):
     reader = RawReader(raw_file, max_events=1_000_000_000)
     bias_values = [float(value) for value in bias.replace("[", "").replace("]", "").split(",")]
     save_events_to_hdf5(reader, sensor_type, bias_values, hdf5_file, process=process)
+    del(reader)
+    if os.path.exists(raw_file+".tmp_index"):
+        os.remove(raw_file+".tmp_index")
 
 
 def main():

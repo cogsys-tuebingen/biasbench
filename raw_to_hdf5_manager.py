@@ -7,6 +7,7 @@ from metavision_core.event_io.raw_reader import RawReader
 import argparse
 import yaml
 import multiprocessing as mp
+from tqdm import tqdm
 
 def parse_arguments():
     """
@@ -20,6 +21,7 @@ def parse_arguments():
     parser.add_argument("--default_bias", type=str, help="Default bias used when no bias was detected", default="[0,0,0,0,0]")
     parser.add_argument("--bias_file_name", type=str, help="File containing biases", default="biases.yaml")
     parser.add_argument("--bias_from_name", type=bool, help="is the bias in the name", default=False)
+    parser.add_argument("--processes", type=int, help="How many parralell processes to use", default=5)
     
     # Positional arguments: Accepts an arbitrary number of values as input-output pairs
     parser.add_argument("pairs", nargs="*", help="Pairs of values (input and output folder paths)")
@@ -38,7 +40,7 @@ def parse_arguments():
     bias_files=[]
     for i in paired_values:
         bias_files.append(os.path.join(i[0],args.bias_file_name))
-    return args.sensor_type, paired_values, args.default_bias,bias_files,args.bias_from_name
+    return args.sensor_type, paired_values, args.default_bias,bias_files,args.bias_from_name,args.processes
 
 def load_biases(file_path):
     """
@@ -102,7 +104,7 @@ def create_data_format_file(path):
         
         print("Data_format File created")
 
-def convert_files(files, input_folder, output_folder, biases, sensor_type):
+def convert_files(files, input_folder, output_folder, biases, sensor_type,proces):
     """
     Convert raw event files to HDF5 format using an external converter script.
 
@@ -116,24 +118,25 @@ def convert_files(files, input_folder, output_folder, biases, sensor_type):
     create_data_format_file(output_folder)
     counter = 0
     start_time = time.time()
-    pool = mp.Pool(processes=5)
+    if proces==0:
+        pool = mp.Pool(processes=mp.cpu_count()-1)
+    else:
+        pool = mp.Pool(processes=proces)
+
     results=[]
     index=0
-    for file in files:
-        print(f"Converting {file}...")
-        file_start_time = time.time()
-        
-        bias = biases[counter] if counter < len(biases) else biases[-1]
-        counter += 1
+    for i, file in enumerate(files):
+        print(f"Queuing {file}...")
+        bias = biases[i] if i < len(biases) else biases[-1]
         results.append(pool.apply_async(run_supprocess, (
             "python3", "raw_to_hdf5.py",
             os.path.join(input_folder, file + ".raw"),
             os.path.join(output_folder, file + ".h5"),
             str(bias),
             sensor_type,
-            str(counter)
+            str(i+1)
         )))
-    for res in results:
+    for res in tqdm(results, desc="Converting files", unit="file"):
         res.get() 
     
     pool.close()
@@ -148,7 +151,7 @@ def run_supprocess(*args):
     for value in args:
         command.append(value)
     subprocess.run(command)
-    print(f"Finished converting {command[1]} in {round(time.time() - t0, 2)} seconds.\n")
+    #print(f"Finished converting {command[1]} in {round(time.time() - t0, 2)} seconds.\n")
 
 
 
@@ -161,7 +164,7 @@ def main():
         print("Usage: python3 batch_raw_to_hdf5_converter.py [--sensor sensor_type] input_path [output_path]")
         sys.exit(1)
     
-    sensor_type, destinations, default_bias,bias_files,bias_from_file = parse_arguments()
+    sensor_type, destinations, default_bias,bias_files,bias_from_file ,processes = parse_arguments()
     
     counter=0
     for input_folder, output_folder in destinations:
@@ -201,7 +204,7 @@ def main():
         counter+=1
 
 
-        convert_files(files_to_convert, input_folder, output_folder, biases, sensor_type)
+        convert_files(files_to_convert, input_folder, output_folder, biases, sensor_type,processes)
 
 if __name__ == "__main__":
     main()

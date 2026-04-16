@@ -17,8 +17,8 @@ biasbench/<br>
 │   ├── data_set/<br>
 │   ├── validation_set_files/<br>
 ├── robot_arm/<br>
-│   ├── left_right_sorted/<br>
-│   ├── triangle_sorted/<br>
+│   ├── left_right/<br>
+│   ├── triangle/<br>
 ├── spinning_dot/<br>
 │   ├── black_dot/<br>
 │   ├── grey_dot/<br>
@@ -1208,32 +1208,45 @@ Bias combinations: <bias_on>\_<bias_off>\_<bias_fo>\_<bias_hpf>\_<bias_refr>.hdf
 
 wget can be used to download the dataset.
 
+For the follwoing downloads <dataset> can be one of:
+- led<br>
+- led/data_set<br>
+- led/validation_set_files<br>
+- robot_arm<br>
+- robot_arm/left_right<br>
+- robot_arm/triangle<br>
+- spinning_dot<br>
+- spinning_dot/black_dot<br>
+- spinning_dot/grey_dot<br>
+
+
+
 ### Full Dataset Download
 
 To download the full dataset use:<br>
 ```
-wget -r -c -np -nH ??urls
+wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/
 ```
 <p>
 
 To download a specific dataset use:
 
 ```
-wget -r -c -np -nH ??urls/<datasetname>
+wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<datasetname>
 ```
 <p>
 
 To download a specific group use:
 
 ```
-wget -r -c -np -nH ??urls/<datasetname>/<groupname>
+wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<datasetname>/<groupname>
 ```
 <p>
 
 To download a specific file use:
 
 ```
-wget -r -c -np -nH ??urls/<datasetname>/<groupname>/<filename>
+wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<datasetname>/<groupname>/<filename>
 ```
 <p>
 
@@ -1263,17 +1276,17 @@ For easier Managability 3 predefiined groups are already selected:
 
 For downloading the small dataset use:
 ```
-wget -r -c -np -nH --accept-regex='.*/(-20|-1?[0-9]|[0-7]?[0-9]|80)_([3-9][0-9]|1[0-2][0-9]|130)_.*' URL_TO_LED_DATASET
+wget -r -c -np -nH --accept-regex='(.*/$|.*/(-20|-1?[0-9]|[0-7]?[0-9]|80)_([3-9][0-9]|1[0-2][0-9]|130)_.*)' https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<dataset>
 ```
 
 For downloading the medium dataset use:
 ```
-wget -r -c -np -nH --accept-regex='.*/(-20|-1?[0-9]|[0-9]?[0-9]|1[0-2][0-9]|130)_([3-9][0-9]|1[0-7][0-9]|180)_.*' URL_TO_LED_DATASET
+wget -r -c -np -nH --accept-regex='(.*/$|.*/(-20|-1?[0-9]|[0-9]?[0-9]|1[0-2][0-9]|130)_([3-9][0-9]|1[0-7][0-9]|180)_.*)' [URL_TO_LED_DATASET](https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<dataset>
 ```
 
 For downloading the large dataset use:
 ```
-wget -r -c -np -nH --accept-regex='.*/(-70|-[1-6]?[0-9]|[0-9]?[0-9]|1[0-2][0-9]|130)_(-20|-1?[0-9]|[0-9]?[0-9]|1[0-7][0-9]|180)_.*' URL_TO_LED_DATASET
+wget -r -c -np -nH --accept-regex='(.*/$|.*/(-70|-[1-6]?[0-9]|[0-9]?[0-9]|1[0-2][0-9]|130)_(-20|-1?[0-9]|[0-9]?[0-9]|1[0-7][0-9]|180)_.*)' https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<dataset>
 ```
 ### Download per File
 
@@ -1281,24 +1294,19 @@ The file `biasbench_downloader.sh` is capable fo doenloading more specific parts
 
 
 To do so download the file and make it executable. Afterwards you can choose from several download modes:<p>
-\<dataset\> can hereby be one of:
+
+\<size\> can be one of:<br>
+- small<br>
+- medium<br>
+- large<br>
+- full<br>
 
 
-- led<br>
-- led/data_set<br>
-- led/validation_set_files<br>
-- robot_arm<br>
-- robot_arm/left_right_sorted<br>
-- robot_arm/triangle_sorted<br>
-- spinning_dot<br>
-- spinning_dot/black_dot<br>
-- spinning_dot/grey_dot<br>
-
-\<range\> can be one of:
-- min:max (20-80)<br>
-- :max (:80) = (-inf : 80) <br>
-- min: (20:) = (20 : inf)<br>
--  :   (:) = (-inf : inf)<br>
+\<range\> can be one of:<br>
+- min:max  for example: (20-80)<br>
+- :max     for example: (:80) = (-inf : 80) <br>
+- min:     for example: (20:) = (20 : inf)<br>
+-  :       for example: (:) = (-inf : inf)<br>
 
 non stated ranges will be interpreted as : 
 
@@ -1328,3 +1336,21 @@ Download specific Biasranges from specific datasets:
 ```
 ./biasbench_downloader.sh <dataset1,dataset2,....> [<range_on>,<range_off>,<range_fo>,<range_hpf>,<range_refr>]
 ```
+#### Examples:
+
+
+To download all files from black_dot and grey_dot with bias values of: -20<=bias_on<=  30, bias_off >=25, no restriction for bias_fo, bias hpf<= 80 and  no restriction on bias_refr you could use:
+
+
+```
+./biasbench_downloader.sh spinning_dot/black_dot,spinning_dot/grey_dot -20:30 25: : :80
+```
+To download the medium dataset for both led dataset you could use:
+
+```
+./biasbench_downloader.sh medium led
+```
+
+### Downloading via Torrent
+
+A detailed explanation how to download via torrent can be found in the readme file at [https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/](https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/).

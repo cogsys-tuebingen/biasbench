@@ -1362,3 +1362,29 @@ To download the medium dataset for the LED dataset:
 
 See the full instructions here:
 [https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/](https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/).
+
+## Credit and licents:
+This dataset is released under the
+Creative Commons Attribution 4.0 International (CC BY 4.0) License.
+
+
+You are free to:
+
+- Share — copy and redistribute the dataset in any medium or format
+- Adapt — remix, transform, and build upon the dataset for any purpose, including commercial use
+
+Under the following condition:
+
+- Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
+
+If you find this dataset useful for your work please cite:
+
+```
+@inproceedings{ziegler2025biasbench,
+  title={BiasBench: A reproducible benchmark for tuning the biases of event cameras},
+  author={Ziegler, Andreas and Joseph, David and Gossard, Thomas and Moldovan, Emil and Zell, Andreas},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={4994--5003},
+  year={2025}
+}
+```

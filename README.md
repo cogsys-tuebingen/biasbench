@@ -1,16 +1,17 @@
 # BiasBench: A reproducible benchmark for tuning the biases of event cameras
 
-The BiasBench dataset is a large-scale event camera dataset designed to evaluate the impact of bias parameters (ON/OFF) on event-based vision.
+The BiasBench dataset is a large-scale event camera dataset designed to evaluate the impact of bias parameters on event-based vision systems.
 
-The total dateset contains<br>
+Dataset overview:<br>
+
 - ~32,000 files<br>
 - ~13 TB total size<br>
-- Multiple datasets with structured bias parameter sweeps
+- Multiple scenes with structured bias parameter sweeps
 
-Because of its size, the dataset is organized to allow selective downloading of relevant subsets.
+Due to its size, the dataset is organized to support selective downloads.
 
 ## Dateset Structure
-The dataset is organized hierarchically:<br>
+The dataset is hierarchically organized:<br>
 
 biasbench/<br>
 ├── led/<br>
@@ -24,11 +25,12 @@ biasbench/<br>
 │   ├── grey_dot/<br>
 
 ### Grouping Concept
-Each dataset is subdivided into:
+Each scene is subdivided into:
 
 Groups: group_X_Y<br>
-Bias combinations: <bias_on>\_<bias_off>\_<bias_fo>\_<bias_hpf>\_<bias_refr>.hdf5
+Bias combinations: <bias_on>_<bias_off>_<bias_fo>_<bias_hpf>_<bias_refr>.h5
 
+Each file encodes a specific combination of bias parameters.
 ### Grouping Numbers
 
 
@@ -1205,10 +1207,9 @@ Bias combinations: <bias_on>\_<bias_off>\_<bias_fo>\_<bias_hpf>\_<bias_refr>.hdf
 <p></p>
 
 ## Data Download
+The dataset can be downloaded using wget.
 
-wget can be used to download the dataset.
-
-For the follwoing downloads <dataset> can be one of:
+For the following downloads, <scene> can be one of:
 - led<br>
 - led/data_set<br>
 - led/validation_set_files<br>
@@ -1223,40 +1224,41 @@ For the follwoing downloads <dataset> can be one of:
 
 ### Full Dataset Download
 
-To download the full dataset use:<br>
+To download the full dataset, use:<br>
 ```
 wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/
 ```
 <p>
 
-To download a specific dataset use:
+To download a specific scene, use:
 
 ```
-wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<datasetname>
-```
-<p>
-
-To download a specific group use:
-
-```
-wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<datasetname>/<groupname>
+wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>
 ```
 <p>
 
-To download a specific file use:
+To download a specific group, use:
 
 ```
-wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<datasetname>/<groupname>/<filename>
+wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>/<groupname>
+```
+<p>
+
+To download a specific file, use:
+
+```
+wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>/<groupname>/<filename>
 ```
 <p>
 
 
 ### Predefined Groups
 
-For easier Managability 3 predefiined groups are already selected:
-- small: containing files with the most common bias values
-- medium: additionally containing verry high biases 
-- large: containing all but the lowest bias configurations
+To simplify usage, three predefined subsets are provided:
+
+- small: contains files with the most common bias values
+- medium: additionally contains very high biases
+- large: contains all but the lowest bias configurations
 
 
 | Size | bias_on min| bias_on max | bias_off min | bias_off max|
@@ -1274,26 +1276,25 @@ For easier Managability 3 predefiined groups are already selected:
 | full | 4834GB|5582GB | 776GB|665GB  | 762GB|361GB |
 
 
-For downloading the small dataset use:
+Small Download:
 ```
-wget -r -c -np -nH --accept-regex='(.*/$|.*/(-20|-1?[0-9]|[0-7]?[0-9]|80)_([3-9][0-9]|1[0-2][0-9]|130)_.*)' https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<dataset>
-```
-
-For downloading the medium dataset use:
-```
-wget -r -c -np -nH --accept-regex='(.*/$|.*/(-20|-1?[0-9]|[0-9]?[0-9]|1[0-2][0-9]|130)_([3-9][0-9]|1[0-7][0-9]|180)_.*)' [URL_TO_LED_DATASET](https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<dataset>
+wget -r -c -np -nH --accept-regex='(.*/$|.*/(-20|-1?[0-9]|[0-7]?[0-9]|80)_([3-9][0-9]|1[0-2][0-9]|130)_.*)' https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>
 ```
 
-For downloading the large dataset use:
+Medium Download:
 ```
-wget -r -c -np -nH --accept-regex='(.*/$|.*/(-70|-[1-6]?[0-9]|[0-9]?[0-9]|1[0-2][0-9]|130)_(-20|-1?[0-9]|[0-9]?[0-9]|1[0-7][0-9]|180)_.*)' https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<dataset>
+wget -r -c -np -nH --accept-regex='(.*/$|.*/(-20|-1?[0-9]|[0-9]?[0-9]|1[0-2][0-9]|130)_([3-9][0-9]|1[0-7][0-9]|180)_.*)' [URL_TO_LED_DATASET](https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>
 ```
-### Download per File
 
-The file `biasbench_downloader.sh` is capable fo doenloading more specific parts of the Dataset.
+Large Download:
+```
+wget -r -c -np -nH --accept-regex='(.*/$|.*/(-70|-[1-6]?[0-9]|[0-9]?[0-9]|1[0-2][0-9]|130)_(-20|-1?[0-9]|[0-9]?[0-9]|1[0-7][0-9]|180)_.*)' https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>
+```
+### Advanced Download Script
 
+The script `biasbench_downloader.sh` enables fine-grained downloads.
 
-To do so download the file and make it executable. Afterwards you can choose from several download modes:<p>
+To use it, download the file and make it executable. Afterwards, you can choose from several download modes:
 
 \<size\> can be one of:<br>
 - small<br>
@@ -1308,44 +1309,50 @@ To do so download the file and make it executable. Afterwards you can choose fro
 - min:     for example: (20:) = (20 : inf)<br>
 -  :       for example: (:) = (-inf : inf)<br>
 
-non stated ranges will be interpreted as : 
+Unspecified ranges default to :.
 
 
+#### Usage
 
-
-Download the same Grouping from all Datasets:
+Download the same Grouping from all scenes:
 
 ```
 ./biasbench_downloader.sh <size>
 ```
 
-Download the same Grouping from specific Datasets:
+Download the same grouping from specific scene:
 
 ```
-./biasbench_downloader.sh <size> <dataset1,dataset2,....>
+./biasbench_downloader.sh <size> <scene1,scene2,....>
 ```
 
-Download specific Biasranges from all datasets:
+Download specific Biasranges from all scenes:
 
 ```
 ./biasbench_downloader.sh all [<range_on>,<range_off>,<range_fo>,<range_hpf>,<range_refr>]
 ```
 
-Download specific Biasranges from specific datasets:
+Download specific bias ranges from specific scenes:
 
 ```
-./biasbench_downloader.sh <dataset1,dataset2,....> [<range_on>,<range_off>,<range_fo>,<range_hpf>,<range_refr>]
+./biasbench_downloader.sh <scene1,scene2,....> [<range_on>,<range_off>,<range_fo>,<range_hpf>,<range_refr>]
 ```
 #### Examples:
 
 
-To download all files from black_dot and grey_dot with bias values of: -20<=bias_on<=  30, bias_off >=25, no restriction for bias_fo, bias hpf<= 80 and  no restriction on bias_refr you could use:
+To download all files from black_dot and grey_dot with:
+- -20<=bias_on<=  30
+-  bias_off >=25
+-  no restriction for bias_fo
+-  bias hpf<= 80
+-  no restriction on bias_refr
 
-
+  use:
 ```
 ./biasbench_downloader.sh spinning_dot/black_dot,spinning_dot/grey_dot -20:30 25: : :80
 ```
-To download the medium dataset for both led dataset you could use:
+
+To download the medium dataset for the LED dataset:
 
 ```
 ./biasbench_downloader.sh medium led
@@ -1353,4 +1360,5 @@ To download the medium dataset for both led dataset you could use:
 
 ### Downloading via Torrent
 
-A detailed explanation how to download via torrent can be found in the readme file at [https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/](https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/).
+See the full instructions here:
+[https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/](https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/).

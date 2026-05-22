@@ -1,4 +1,4 @@
-# BiasBench: A reproducible benchmark for tuning the biases of event cameras
+# BiasBench: A reproducible benchmark for tuning the biases of event camerasbench_downloader.sh <scene1,scene2,....> [<range_on>,<range_off>,<range_fo>,<range_hpf>,<range_refr>]
 
 The BiasBench dataset is a large-scale event camera dataset designed to evaluate the impact of bias parameters on event-based vision systems.
 
@@ -6,7 +6,7 @@ Dataset overview:<br>
 
 - ~32,000 files<br>
 - ~13 TB total size<br>
-- Multiple scenes with structured bias parameter sweeps
+- Multiple scenes with structured bias parameter sweeps, each with a training/validation split
 
 Due to its size, the dataset is organized to support selective downloads.
 
@@ -28,9 +28,19 @@ biasbench/<br>
 Each scene is subdivided into:
 
 Groups: group_X_Y<br>
+Each file encodes a specific combination of bias parameters.
 Bias combinations: <bias_on>_<bias_off>_<bias_fo>_<bias_hpf>_<bias_refr>.h5
 
-Each file encodes a specific combination of bias parameters.
+For example: a file with the following bias combination
+
+- bias_on   = 10
+- bias_off  = 20
+- bias_fo   = 100
+- bias_hpf  = 120
+- bias_refr = 0
+
+would be called '10_20_100_120_0.h5'
+
 ### Grouping Numbers
 
 
@@ -1209,7 +1219,7 @@ Each file encodes a specific combination of bias parameters.
 ## Data Download
 The dataset can be downloaded using wget.
 
-For the following downloads, <scene> can be one of:
+For the following downloads, \<scene\> can be one of:
 - led<br>
 - led/data_set<br>
 - led/validation_set_files<br>
@@ -1225,28 +1235,28 @@ For the following downloads, <scene> can be one of:
 ### Full Dataset Download
 
 To download the full dataset, use:<br>
-```
+```bash
 wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/
 ```
 <p>
 
 To download a specific scene, use:
 
-```
+```bash
 wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>
 ```
 <p>
 
 To download a specific group, use:
 
-```
+```bash
 wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>/<groupname>
 ```
 <p>
 
 To download a specific file, use:
 
-```
+```bash
 wget -r -c -np -nH https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>/<groupname>/<filename>
 ```
 <p>
@@ -1277,17 +1287,17 @@ To simplify usage, three predefined subsets are provided:
 
 
 Small Download:
-```
+```bash
 wget -r -c -np -nH --accept-regex='(.*/$|.*/(-20|-1?[0-9]|[0-7]?[0-9]|80)_([3-9][0-9]|1[0-2][0-9]|130)_.*)' https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>
 ```
 
 Medium Download:
-```
+```bash
 wget -r -c -np -nH --accept-regex='(.*/$|.*/(-20|-1?[0-9]|[0-9]?[0-9]|1[0-2][0-9]|130)_([3-9][0-9]|1[0-7][0-9]|180)_.*)' [URL_TO_LED_DATASET](https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>
 ```
 
 Large Download:
-```
+```bash
 wget -r -c -np -nH --accept-regex='(.*/$|.*/(-70|-[1-6]?[0-9]|[0-9]?[0-9]|1[0-2][0-9]|130)_(-20|-1?[0-9]|[0-9]?[0-9]|1[0-7][0-9]|180)_.*)' https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/files/<scene>
 ```
 ### Advanced Download Script
@@ -1316,25 +1326,25 @@ Unspecified ranges default to :.
 
 Download the same Grouping from all scenes:
 
-```
+```bash
 ./biasbench_downloader.sh <size>
 ```
 
 Download the same grouping from specific scene:
 
-```
+```bash
 ./biasbench_downloader.sh <size> <scene1,scene2,....>
 ```
 
 Download specific Biasranges from all scenes:
 
-```
+```bash
 ./biasbench_downloader.sh all [<range_on>,<range_off>,<range_fo>,<range_hpf>,<range_refr>]
 ```
 
 Download specific bias ranges from specific scenes:
 
-```
+```bash
 ./biasbench_downloader.sh <scene1,scene2,....> [<range_on>,<range_off>,<range_fo>,<range_hpf>,<range_refr>]
 ```
 #### Examples:
@@ -1348,13 +1358,13 @@ To download all files from black_dot and grey_dot with:
 -  no restriction on bias_refr
 
   use:
-```
+```bash
 ./biasbench_downloader.sh spinning_dot/black_dot,spinning_dot/grey_dot -20:30 25: : :80
 ```
 
 To download the medium dataset for the LED dataset:
 
-```
+```bash
 ./biasbench_downloader.sh medium led
 ```
 
@@ -1363,7 +1373,7 @@ To download the medium dataset for the LED dataset:
 See the full instructions here:
 [https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/](https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/).
 
-## Credit and licents:
+## Credit and license:
 This dataset is released under the
 Creative Commons Attribution 4.0 International (CC BY 4.0) License.
 

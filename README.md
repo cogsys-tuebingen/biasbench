@@ -17,7 +17,7 @@
 
 The BiasBench dataset is a large-scale event camera dataset designed to evaluate the impact of bias parameters on event-based vision systems. 
 
-THe corresponding paper can be found at: [BiasBench](https://arxiv.org/pdf/2504.18235)
+The corresponding paper can be found at: [BiasBench](https://arxiv.org/pdf/2504.18235)
 
 The project page at: [Project page](https://cogsys-tuebingen.github.io/biasbench/)
 

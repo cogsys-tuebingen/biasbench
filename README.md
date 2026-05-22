@@ -1,8 +1,23 @@
-# BiasBench: A reproducible benchmark for tuning the biases of event camerasbench_downloader.sh <scene1,scene2,....> [<range_on>,<range_off>,<range_fo>,<range_hpf>,<range_refr>]
+# BiasBench:BiasBench: A reproducible benchmark for tuning the biases of event cameras
+
+
+
+## Table of Content
+
+- [Table of Content](#table-of-content)
+- [Dataset overview](#dataset-overview)
+- [Dataset structure](#dateset-structure)
+- [Download](#data-download)
+-  - [Direct Download](#full-dataset-download)
+   - [Grouped Download](#predefined-groups)
+   - [Download Script](#advanced-download-script)
+   - [Torrent Download](#downloading-via-torrent)
+- [Credit and license](#credit-and-license)
+
 
 The BiasBench dataset is a large-scale event camera dataset designed to evaluate the impact of bias parameters on event-based vision systems.
 
-Dataset overview:<br>
+## Dataset overview:<br>
 
 - ~32,000 files<br>
 - ~13 TB total size<br>
@@ -1130,7 +1145,7 @@ would be called '10_20_100_120_0.h5'
 --  0_25_...<br>
 </details>
 
-<details>
+<details>structure
 <summary>group_7_8</summary>
 --  -10_-10_...<br>
 --  -10_1_...<br>

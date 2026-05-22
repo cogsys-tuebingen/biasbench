@@ -120,18 +120,6 @@ give_reggex_range() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 # Main
 if [[ $# -ge 1 ]]; then
     first_arg="$1"

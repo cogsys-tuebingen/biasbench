@@ -1,6 +1,29 @@
+<div align="center">
+
 # BiasBench:BiasBench: A reproducible benchmark for tuning the biases of event cameras
 
+<p align="center">
+  <a href="https://arxiv.org/abs/2504.18235">
+    <img src="https://img.shields.io/badge/arXiv-2604.11349-b31b1b.svg"/>
+  </a>
+  <a href="https://arxiv.org/pdf/2504.18235">
+    <img src="https://img.shields.io/badge/PDF-Download-blue.svg"/>
+  </a>
+  <a href="https://cogsys-tuebingen.github.io/biasbench/">
+    <img src="https://img.shields.io/badge/Project-Page-green.svg"/>
+  </a>
+</p>
 
+
+**CVPR 2025 Workshop on Event-based Vision**
+
+</div>
+
+The BiasBench dataset is a large-scale event camera dataset designed to evaluate the impact of bias parameters on event-based vision systems. 
+
+<p align="center">
+  <img src="spinning_dot_demo.GIF" width="800"/>
+</p>
 
 ## Table of Content
 
@@ -14,12 +37,6 @@
    - [Torrent Download](#downloading-via-torrent)
 - [Credit and license](#credit-and-license)
 
-
-The BiasBench dataset is a large-scale event camera dataset designed to evaluate the impact of bias parameters on event-based vision systems. 
-
-The corresponding paper can be found at: [BiasBench](https://arxiv.org/pdf/2504.18235)
-
-The project page at: [Project page](https://cogsys-tuebingen.github.io/biasbench/)
 
 ## Dataset overview:<br>
 

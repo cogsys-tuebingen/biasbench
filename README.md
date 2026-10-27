@@ -1404,11 +1404,6 @@ To download the medium dataset for the LED dataset:
 ./biasbench_downloader.sh medium led
 ```
 
-### Downloading via Torrent
-
-See the full instructions here:
-[https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/](https://www.cogsys.cs.uni-tuebingen.de/webprojects/biasbench-2025/).
-
 ## Credit and license:
 This dataset is released under the
 Creative Commons Attribution 4.0 International (CC BY 4.0) License.
